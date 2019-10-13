@@ -1,5 +1,5 @@
 {
-	"name": "@aharen/thaana-keyboard",
+	"name": "thaana-keyboard",
 	"version": "1.0.0",
 	"description": "Thaana keyboard replaces latin text to thaana unicode characters",
 	"author": "Ahmed Khusaam <hello@khusaam.com>",
