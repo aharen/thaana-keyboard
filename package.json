@@ -1,4 +1,22 @@
 {
 	"name": "aharen/thaana-keyboard",
-	"version": "1.0.0"
+	"version": "1.0.0",
+	"description": "Thaana keyboard replaces latin text to thaana unicode characters",
+	"author": "Ahmed Khusaam <hello@khusaam.com>",
+	"license": "MIT",
+	"homepage": "https://github.com/aharen/thaana-keyboard",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aharen/thaana-keyboard.git"
+	},
+	"main": "index.js",
+	"keywords": [
+		"thaana",
+		"dhivehi",
+		"keyboard",
+		"latin",
+		"unicode",
+		"characters",
+		"replacement"
+	]
 }
