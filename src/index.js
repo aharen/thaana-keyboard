@@ -76,4 +76,5 @@ function l2t(e) {
 	}
 }
 
-export default l2t;
+// module.exports.l2t
+// export default l2t;

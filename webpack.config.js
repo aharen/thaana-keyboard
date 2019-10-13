@@ -9,7 +9,7 @@ module.exports = {
 		app: './src/index.js',
 	},
 	output: {
-		filename: 'thaana-keyboard.bundle.js',
+		filename: 'thaana.min.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
 }
