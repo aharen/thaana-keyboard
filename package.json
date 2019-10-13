@@ -1,6 +1,6 @@
 {
 	"name": "thaana-keyboard",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Thaana keyboard replaces latin text to thaana unicode characters",
 	"author": "Ahmed Khusaam <hello@khusaam.com>",
 	"license": "MIT",
@@ -9,7 +9,10 @@
 		"type": "git",
 		"url": "https://github.com/aharen/thaana-keyboard.git"
 	},
-	"main": "index.js",
+	"scripts": {
+		"build": "webpack"
+	},
+	"main": "src/index.js",
 	"keywords": [
 		"thaana",
 		"dhivehi",
@@ -18,5 +21,9 @@
 		"unicode",
 		"characters",
 		"replacement"
-	]
+	],
+	"devDependencies": {
+		"webpack": "^4.41.1",
+		"webpack-cli": "^3.3.9"
+	}
 }
