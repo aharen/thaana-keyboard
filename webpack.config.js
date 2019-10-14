@@ -5,11 +5,11 @@ const path = require('path')
 
 module.exports = {
 	mode: 'production',
-	entry: {
-		app: './src/index.js',
-	},
+	entry: path.join(__dirname, '/src/index.js'),
 	output: {
-		filename: 'thaana.min.js',
+		library: 'thaanaKeyboard',
+		libraryTarget: 'umd',
+		filename: 'thaana-keyboard.min.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
 }

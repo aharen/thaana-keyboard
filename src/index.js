@@ -55,7 +55,7 @@ const K = {
 
 const I = ['Shift', 'Control', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Meta', 'Alt', 'Backspace', 'Escape', 'Tab']
 
-function l2t(e) {
+export function l2t(e) {
 	if (!I.includes(e.key)) {
 		e.preventDefault()
 		e.stopPropagation()
@@ -75,6 +75,3 @@ function l2t(e) {
 		et.selectionEnd = ts + 1
 	}
 }
-
-// module.exports.l2t
-// export default l2t;
