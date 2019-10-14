@@ -51,9 +51,20 @@ const K = {
 	'B': 'ޞ',
 	'N': 'ޏ',
 	'M': 'ޟ',
+	',': '،',
+	';': '؛',
+	'?': '؟',
+	'<': '>',
+	'>': '<',
+	'[': ']',
+	']': '[',
+	'(': ')',
+	')': '(',
+	'': '}'،
+	'': '{'،
 }
 
-const I = ['Shift', 'Control', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Meta', 'Alt', 'Backspace', 'Escape', 'Tab']
+const I = ['Shift', 'Control', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Meta', 'Alt', 'Backspace', 'Escape', 'Tab', 'Delete', 'Home', 'Enter']
 
 export function l2t(e) {
 	if (!I.includes(e.key)) {
