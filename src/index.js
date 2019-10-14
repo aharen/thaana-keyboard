@@ -60,8 +60,8 @@ const K = {
 	']': '[',
 	'(': ')',
 	')': '(',
-	'': '}'،
-	'': '{'،
+	'{': '}',
+	'}': '{',
 }
 
 const I = ['Shift', 'Control', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Meta', 'Alt', 'Backspace', 'Escape', 'Tab', 'Delete', 'Home', 'Enter']
