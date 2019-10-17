@@ -64,25 +64,55 @@ const K = {
 	'}': '{',
 }
 
-const I = ['Shift', 'Control', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft', 'Meta', 'Alt', 'Backspace', 'Escape', 'Tab', 'Delete', 'Home', 'Enter']
+const l2t = function(e, k) {
+	let et = e.target
+	let v = K[k] || k
 
-export function l2t(e) {
-	if (!I.includes(e.key)) {
-		e.preventDefault()
-		e.stopPropagation()
+	// It's a selection
+	if (ts !== te) {
+		et.value = et.value.substring(0, ts) + et.value.substring(te)
+	}
+	et.value = et.value.substring(0, ts) + v + et.value.substring(ts)
 
-		let et = e.target
-		let ts = et.selectionStart
-		let te = et.selectionEnd
-		let v = K[e.key] || e.key
+	// maintain cursor pointer after replacement
+	et.selectionStart = ts + 1
+	et.selectionEnd = ts + 1
+}
 
-		if (ts !== te) {
-			et.value = et.value.substring(0, ts) + et.value.substring(te)
+let i = document.querySelector('.thaana-keyboard'),
+	o,
+	ts,
+	te,
+	kk
+
+i.addEventListener('input', function(e) {
+	// if keydown key was Unidentified (by Android) use input value
+	let ik = kk === 'Unidentified' ? e.data : kk
+
+	// for only IE and Edge
+	if (['Spacebar', 'Backspace'].indexOf(ik) === -1) {
+
+		// set to null for special keyboard values, except for the IE and Edge (above)
+		if (e.data !== null) {
+
+			// Trying to handle android autocorrect, next-word suggestion
+			if (ik === e.target.value) {
+				ik = e.target.value.split(o).join('')
+			}
+
+			// remove the inserted character latin character
+			e.target.value = o.split(e.target.value).join('')
+			l2t(e, ik)
 		}
 
-		et.value = et.value.substring(0, ts) + v + et.value.substring(ts)
-
-		et.selectionStart = ts + 1
-		et.selectionEnd = ts + 1
+		e.stopPropagation()
+		e.preventDefault()
 	}
-}
+})
+
+i.addEventListener('keydown', function(e) {
+	kk = e.key
+	o = e.target.value
+	ts = e.target.selectionStart
+	te = e.target.selectionEnd
+})
