@@ -1,5 +1,7 @@
 # thaana-keyboard
-Thaana keyboard replaces latin text to thaana unicode characters
+Thaana keyboard replaces latin text to thaana unicode characters using JavaScript. 
+
+Demo: [https://thaana-keyboard.khusaam.com](https://thaana-keyboard.khusaam.com)
 
 ## Installation & Usage
 
