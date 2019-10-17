@@ -21,9 +21,9 @@ or link to build file in d
 <script src="../dist/thaana-keyboard.min.js"></script>
 ```
 
-Setup input 
+Setup input. Simply add class `thaana-keyboard` to the element
 
 ```
 <input type="text"
-	onkeydown="thaanaKeyboard.l2t(event)">
+	class="thaana-keyboard">
 ```
