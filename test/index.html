@@ -16,6 +16,14 @@
 		.thaana-keyboard {
 			direction: rtl;
 		}
+		iframe {
+		    height: 65vh;
+		}
+		@media screen and (min-width: 640px) {
+			iframe {
+				height: 45vh;
+			}
+		}
 	</style>
 </head>
 <body class="bg-gray-200">
@@ -55,7 +63,7 @@
             </div>
         </div>
 
-        <div class="my-10 bg-gray-300">
+        <div class="my-10">
 			<input type="text" 
 				class="thaana-keyboard p-3 w-full border border-gray-100 rounded outline-none border-gray-300 focus:outline-none focus:border-gray-400 focus:shadow"
 				placeholder="ލިޔެލާ..." />
@@ -63,11 +71,15 @@
 
         <div class="flex flex-no-wrap w-full">
 			<iframe
-				class="flex-1 w-full h-screen sm:h-64"
+				class="flex-1 w-full"
 				src="https://carbon.now.sh/embed/?bg=rgba(237%2C242%2C247%2C1)&t=one-dark&wt=none&l=htmlmixed&ds=true&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=56px&ph=56px&ln=true&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=%252F%252F%2520use%2520the%2520class%2520'thaana-keyboard'%2520on%2520element%250A%253Cinput%2520type%253D%2522text%2522%2520class%253D%2522thaana-keyboard%2522%2520%252F%253E%250A%252F%252F%2520import%2520the%2520file%250A%253Cscript%2520src%253D%2522thaana-keyboard.min.js%2522%253E%253C%252Fscript%253E"
 				style="border:0; overflow:hidden;"
 				sandbox="allow-scripts allow-same-origin">
 			</iframe>
+        </div>
+
+        <div class="text-center text-gray-800 my-10 text-sm">
+        	Inspirations: <a href="https://github.com/ajaaibu/thaanaKeyboard" target="_blank" class="underline text-orange-400">jQuery ThaanaKeyboard</a> by <a href="https://about.me/ajaaibu" target="_blank" class="underline text-orange-400">Ajaaibu</a> and <a href="https://github.com/jawish/jtk" target="_blank" class="underline text-orange-400">Javascript Thaana Keyboard</a> by <a href="https://www.jawish.org/blog/" target="_blank" class="underline text-orange-400">Jawish</a>
         </div>
 	</div>
 	<script src="thaana-keyboard.min.js"></script>
