@@ -4,7 +4,21 @@
   "description": "Thaana keyboard replaces latin text to thaana unicode characters",
   "author": "Ahmed Khusaam <hello@khusaam.com>",
   "license": "MIT",
-  "main": "index.js",
+  "homepage": "https://github.com/aharen/thaana-keyboard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aharen/thaana-keyboard.git"
+  },
+  "main": "app.js",
+  "keywords": [
+    "thaana",
+    "dhivehi",
+    "keyboard",
+    "latin",
+    "unicode",
+    "characters",
+    "replacement"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
