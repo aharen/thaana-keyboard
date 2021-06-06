@@ -1,30 +1,15 @@
 {
-	"name": "thaana-keyboard",
-	"version": "1.0.12",
-	"description": "Thaana keyboard replaces latin text to thaana unicode characters",
-	"author": "Ahmed Khusaam <hello@khusaam.com>",
-	"license": "MIT",
-	"homepage": "https://github.com/aharen/thaana-keyboard",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/aharen/thaana-keyboard.git"
-	},
-	"scripts": {
-		"build": "webpack"
-	},
-	"main": "src/index.js",
-	"keywords": [
-		"thaana",
-		"dhivehi",
-		"keyboard",
-		"latin",
-		"unicode",
-		"characters",
-		"replacement"
-	],
-	"devDependencies": {
-		"terser-webpack-plugin": "^2.1.3",
-		"webpack": "^4.41.1",
-		"webpack-cli": "^3.3.9"
-	}
+  "name": "one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
 }
