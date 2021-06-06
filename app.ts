@@ -111,9 +111,4 @@ class ThaanaKeyboard {
 
 }
 
-// const ThaanKeyboard = new ThaanaKeyboard(
-//     '.thaana-keyboard',
-//     false
-// )
-
-// ThaanKeyboard.run()
+(window as any).ThaanaKeyboard = ThaanaKeyboard
