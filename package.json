@@ -1,14 +1,14 @@
 {
-  "name": "one",
-  "version": "1.0.0",
-  "description": "",
+  "name": "thaana-keyboard",
+  "version": "1.0.10",
+  "description": "Thaana keyboard replaces latin text to thaana unicode characters",
+  "author": "Ahmed Khusaam <hello@khusaam.com>",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "lite-server": "^2.6.1"
   }
