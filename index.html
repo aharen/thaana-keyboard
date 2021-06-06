@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <script src="app.js" defer></script>
+    <script src="ThaanaKeyboard.js" defer></script>
 </head>
 <body class="bg-gray-200" dir="rtl">
 
@@ -18,7 +18,15 @@
         <textarea name="" id="" cols="30" rows="10" class="thaana-keyboard border border-gray-500 px-3 py-2 rounded"></textarea>
     </div>
 
-    
+    <script>
+        window.addEventListener('DOMContentLoaded' , (e) => {
+            const tk = new window.ThaanaKeyboard(
+                '.thaana-keyboard',
+                false
+            )
+            tk.run()
+        })
+    </script>
     
 </body>
 </html>
