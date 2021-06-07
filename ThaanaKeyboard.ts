@@ -23,20 +23,28 @@ class ThaanaKeyboard {
         if ('insertText' !== e.inputType) return
 
         const target = e.target as HTMLInputElement
-
         const newCharInput = this.getChar(e.data)
+
+        const selectionStart = target.selectionStart
+        const selectionEnd = target.selectionEnd
 
         // handle "spacebar"
         if (" " === newCharInput) return
 
         // remove the original latin char
         target.value = target.value.split(e.data).join('')
+        
 
-        let newValue = target.value.substring(0, target.selectionStart)
+        // insert the new char where the cursor was at
+        let newValue = target.value.substring(0, selectionStart - 1)
         newValue += newCharInput
-        newValue += target.value.substring(target.selectionStart)
+        newValue += target.value.substring(selectionStart - 1)
 
         target.value = newValue
+
+        // maintain cursor location
+        target.selectionStart = selectionStart
+        target.selectionEnd = selectionEnd
     }
 
     getChar(char) {

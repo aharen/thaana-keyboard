@@ -19,15 +19,21 @@ var ThaanaKeyboard = /** @class */ (function () {
             return;
         var target = e.target;
         var newCharInput = this.getChar(e.data);
+        var selectionStart = target.selectionStart;
+        var selectionEnd = target.selectionEnd;
         // handle "spacebar"
         if (" " === newCharInput)
             return;
         // remove the original latin char
         target.value = target.value.split(e.data).join('');
-        var newValue = target.value.substring(0, target.selectionStart);
+        // insert the new char where the cursor was at
+        var newValue = target.value.substring(0, selectionStart - 1);
         newValue += newCharInput;
-        newValue += target.value.substring(target.selectionStart);
+        newValue += target.value.substring(selectionStart - 1);
         target.value = newValue;
+        // maintain cursor location
+        target.selectionStart = selectionStart;
+        target.selectionEnd = selectionEnd;
     };
     ThaanaKeyboard.prototype.getChar = function (char) {
         var keyMap = {
