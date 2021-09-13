@@ -24,6 +24,7 @@
     "start": "lite-server"
   },
   "devDependencies": {
+    "axios": "^0.21.4",
     "lite-server": "^2.6.1"
   }
 }
