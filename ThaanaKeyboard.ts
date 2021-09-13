@@ -1,6 +1,10 @@
 class ThaanaKeyboard {
     className: string
 
+    char: string
+
+    latinChar: string
+
     constructor(
         className = '.thaana-keyboard',
         autoStart = true
@@ -14,32 +18,43 @@ class ThaanaKeyboard {
     
     run() {
         const inputs = document.querySelectorAll(this.className)
+        inputs.forEach(input => input.addEventListener('beforeinput', (e) => this.beforeInputEvent(e)))
         inputs.forEach(input => input.addEventListener('input', (e) => this.inputEvent(e)))
+    }
+
+    beforeInputEvent(event) {
+        const e = event as InputEvent
+
+        if (-1 !== ['insertCompositionText', 'insertText'].indexOf(e.inputType)) {
+            this.latinChar = e.data
+            this.char = this.getChar(this.latinChar)
+        }
+        return;
     }
 
     inputEvent(event) {
         const e = event as InputEvent
+
         // run ONLY for insertText inputType (handles backspace)
-        if ('insertText' !== e.inputType) return
+        if (-1 === ['insertCompositionText', 'insertText'].indexOf(e.inputType)) return
+
+        // run ONLY for charmap
+        if (this.char === this.latinChar) return
 
         const target = e.target as HTMLInputElement
-        const newCharInput = this.getChar(e.data)
-
+        
         const selectionStart = target.selectionStart
         const selectionEnd = target.selectionEnd
 
-        // handle "spacebar"
-        if (" " === newCharInput) return
-
         // remove the original latin char
-        target.value = target.value.split(e.data).join('')
-        
+        target.value = target.value.split(this.latinChar).join('')
 
-        // insert the new char where the cursor was at
+        // recreate text with newChar
         let newValue = target.value.substring(0, selectionStart - 1)
-        newValue += newCharInput
+        newValue += this.char
         newValue += target.value.substring(selectionStart - 1)
 
+        // update the target with newChar
         target.value = newValue
 
         // maintain cursor location

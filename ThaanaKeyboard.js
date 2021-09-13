@@ -10,26 +10,35 @@ var ThaanaKeyboard = /** @class */ (function () {
     ThaanaKeyboard.prototype.run = function () {
         var _this = this;
         var inputs = document.querySelectorAll(this.className);
+        inputs.forEach(function (input) { return input.addEventListener('beforeinput', function (e) { return _this.beforeInputEvent(e); }); });
         inputs.forEach(function (input) { return input.addEventListener('input', function (e) { return _this.inputEvent(e); }); });
+    };
+    ThaanaKeyboard.prototype.beforeInputEvent = function (event) {
+        var e = event;
+        if (-1 !== ['insertCompositionText', 'insertText'].indexOf(e.inputType)) {
+            this.latinChar = e.data;
+            this.char = this.getChar(this.latinChar);
+        }
+        return;
     };
     ThaanaKeyboard.prototype.inputEvent = function (event) {
         var e = event;
         // run ONLY for insertText inputType (handles backspace)
-        if ('insertText' !== e.inputType)
+        if (-1 === ['insertCompositionText', 'insertText'].indexOf(e.inputType))
+            return;
+        // run ONLY for charmap
+        if (this.char === this.latinChar)
             return;
         var target = e.target;
-        var newCharInput = this.getChar(e.data);
         var selectionStart = target.selectionStart;
         var selectionEnd = target.selectionEnd;
-        // handle "spacebar"
-        if (" " === newCharInput)
-            return;
         // remove the original latin char
-        target.value = target.value.split(e.data).join('');
-        // insert the new char where the cursor was at
+        target.value = target.value.split(this.latinChar).join('');
+        // recreate text with newChar
         var newValue = target.value.substring(0, selectionStart - 1);
-        newValue += newCharInput;
+        newValue += this.char;
         newValue += target.value.substring(selectionStart - 1);
+        // update the target with newChar
         target.value = newValue;
         // maintain cursor location
         target.selectionStart = selectionStart;
