@@ -20,10 +20,6 @@
     "replacement"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
-  },
-  "devDependencies": {
-    "lite-server": "^2.6.1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
