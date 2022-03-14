@@ -5,6 +5,8 @@ class ThaanaKeyboard {
 
     latinChar: string
 
+    oldValue: string
+
     constructor(
         className = '.thaana-keyboard',
         autoStart = true
@@ -24,16 +26,19 @@ class ThaanaKeyboard {
 
     beforeInputEvent(event) {
         const e = event as InputEvent
+        const t = e.target as HTMLInputElement
 
         if (-1 !== ['insertCompositionText', 'insertText'].indexOf(e.inputType)) {
             this.latinChar = e.data
             this.char = this.getChar(this.latinChar)
+            this.oldValue = t.value
         }
         return;
     }
 
     inputEvent(event) {
         const e = event as InputEvent
+        const t = e.target as HTMLInputElement
 
         // run ONLY for insertText inputType (handles backspace)
         if (-1 === ['insertCompositionText', 'insertText'].indexOf(e.inputType)) return
@@ -47,7 +52,8 @@ class ThaanaKeyboard {
         const selectionEnd = target.selectionEnd
 
         // remove the original latin char
-        target.value = target.value.split(this.latinChar).join('')
+        target.value = '' // reset the value first
+        target.value = this.oldValue.split(this.latinChar).join('')
 
         // recreate text with newChar
         let newValue = target.value.substring(0, selectionStart - 1)

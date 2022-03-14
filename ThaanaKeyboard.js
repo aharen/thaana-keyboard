@@ -15,14 +15,17 @@ var ThaanaKeyboard = /** @class */ (function () {
     };
     ThaanaKeyboard.prototype.beforeInputEvent = function (event) {
         var e = event;
+        var t = e.target;
         if (-1 !== ['insertCompositionText', 'insertText'].indexOf(e.inputType)) {
             this.latinChar = e.data;
             this.char = this.getChar(this.latinChar);
+            this.oldValue = t.value;
         }
         return;
     };
     ThaanaKeyboard.prototype.inputEvent = function (event) {
         var e = event;
+        var t = e.target;
         // run ONLY for insertText inputType (handles backspace)
         if (-1 === ['insertCompositionText', 'insertText'].indexOf(e.inputType))
             return;
@@ -33,7 +36,8 @@ var ThaanaKeyboard = /** @class */ (function () {
         var selectionStart = target.selectionStart;
         var selectionEnd = target.selectionEnd;
         // remove the original latin char
-        target.value = target.value.split(this.latinChar).join('');
+        target.value = ''; // reset the value first
+        target.value = this.oldValue.split(this.latinChar).join('');
         // recreate text with newChar
         var newValue = target.value.substring(0, selectionStart - 1);
         newValue += this.char;
