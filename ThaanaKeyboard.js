@@ -36,6 +36,7 @@ var ThaanaKeyboard = /** @class */ (function () {
         var selectionStart = target.selectionStart;
         var selectionEnd = target.selectionEnd;
         // remove the original latin char
+        target.value = ''; // reset the value first
         target.value = this.oldValue.split(this.latinChar).join('');
         // recreate text with newChar
         var newValue = target.value.substring(0, selectionStart - 1);

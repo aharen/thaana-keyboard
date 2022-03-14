@@ -52,6 +52,7 @@ class ThaanaKeyboard {
         const selectionEnd = target.selectionEnd
 
         // remove the original latin char
+        target.value = '' // reset the value first
         target.value = this.oldValue.split(this.latinChar).join('')
 
         // recreate text with newChar
