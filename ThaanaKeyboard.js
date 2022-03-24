@@ -12,6 +12,7 @@ var ThaanaKeyboard = /** @class */ (function () {
         var inputs = document.querySelectorAll(this.className);
         inputs.forEach(function (input) { return input.addEventListener('beforeinput', function (e) { return _this.beforeInputEvent(e); }); });
         inputs.forEach(function (input) { return input.addEventListener('input', function (e) { return _this.inputEvent(e); }); });
+        document.addEventListener('selectionchange', _this.selectionChange )
     };
     ThaanaKeyboard.prototype.beforeInputEvent = function (event) {
         var e = event;
@@ -23,6 +24,11 @@ var ThaanaKeyboard = /** @class */ (function () {
         }
         return;
     };
+    ThaanaKeyboard.prototype.selectionChange = function () {
+        const activeElement = document.activeElement
+        activeElement.dataset.start = activeElement.selectionStart
+        activeElement.dataset.end = activeElement.selectionEnd
+    };
     ThaanaKeyboard.prototype.inputEvent = function (event) {
         var e = event;
         var t = e.target;
@@ -33,20 +39,26 @@ var ThaanaKeyboard = /** @class */ (function () {
         if (this.char === this.latinChar)
             return;
         var target = e.target;
-        var selectionStart = target.selectionStart;
-        var selectionEnd = target.selectionEnd;
+        var cursorStart = target.selectionStart;
+        var cursorEnd = target.selectionEnd;
         // remove the original latin char
         target.value = ''; // reset the value first
         target.value = this.oldValue.split(this.latinChar).join('');
+
+        //remove selection 
+        const selectionStart = target.dataset.start
+        const selectionEnd = target.dataset.end
+        if( ( selectionEnd - selectionStart ) > 0 )
+            target.value =  target.value.substring(0, selectionStart) + target.value.substring(selectionEnd)
         // recreate text with newChar
-        var newValue = target.value.substring(0, selectionStart - 1);
+        var newValue = target.value.substring(0, cursorStart - 1);
         newValue += this.char;
-        newValue += target.value.substring(selectionStart - 1);
+        newValue += target.value.substring(cursorStart - 1);
         // update the target with newChar
         target.value = newValue;
         // maintain cursor location
-        target.selectionStart = selectionStart;
-        target.selectionEnd = selectionEnd;
+        target.selectionStart = cursorStart;
+        target.selectionEnd = cursorEnd;
     };
     ThaanaKeyboard.prototype.getChar = function (char) {
         var keyMap = {
