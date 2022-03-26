@@ -22,6 +22,8 @@ class ThaanaKeyboard {
         const inputs = document.querySelectorAll(this.className)
         inputs.forEach(input => input.addEventListener('beforeinput', (e) => this.beforeInputEvent(e)))
         inputs.forEach(input => input.addEventListener('input', (e) => this.inputEvent(e)))
+        document.addEventListener('selectionchange', this.selectionChange )
+
     }
 
     beforeInputEvent(event) {
@@ -36,6 +38,12 @@ class ThaanaKeyboard {
         return;
     }
 
+    selectionChange = function () {
+        const activeElement = document.activeElement as HTMLInputElement 
+        activeElement.dataset.start = activeElement.selectionStart as any
+        activeElement.dataset.end = activeElement.selectionEnd as any
+    };
+
     inputEvent(event) {
         const e = event as InputEvent
         const t = e.target as HTMLInputElement
@@ -48,24 +56,31 @@ class ThaanaKeyboard {
 
         const target = e.target as HTMLInputElement
         
-        const selectionStart = target.selectionStart
-        const selectionEnd = target.selectionEnd
+        const cursorStart = target.selectionStart
+        const cursorEnd = target.selectionEnd
 
         // remove the original latin char
         target.value = '' // reset the value first
         target.value = this.oldValue.split(this.latinChar).join('')
 
+        //remove selection 
+        const selectionStart = Number(target.dataset.start) as number
+        const selectionEnd = Number(target.dataset.end) as number
+        
+        if( ( selectionEnd - selectionStart ) > 0 )
+            target.value =  target.value.substring(0, selectionStart) + target.value.substring(selectionEnd)
+
         // recreate text with newChar
-        let newValue = target.value.substring(0, selectionStart - 1)
+        let newValue = target.value.substring(0, cursorStart - 1)
         newValue += this.char
-        newValue += target.value.substring(selectionStart - 1)
+        newValue += target.value.substring(cursorStart - 1)
 
         // update the target with newChar
         target.value = newValue
 
         // maintain cursor location
-        target.selectionStart = selectionStart
-        target.selectionEnd = selectionEnd
+        target.selectionStart = cursorStart
+        target.selectionEnd = cursorEnd
     }
 
     getChar(char) {
