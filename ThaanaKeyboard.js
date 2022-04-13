@@ -2,6 +2,11 @@ var ThaanaKeyboard = /** @class */ (function () {
     function ThaanaKeyboard(className, autoStart) {
         if (className === void 0) { className = '.thaana-keyboard'; }
         if (autoStart === void 0) { autoStart = true; }
+        this.selectionChange = function () {
+            var activeElement = document.activeElement;
+            activeElement.dataset.start = activeElement.selectionStart;
+            activeElement.dataset.end = activeElement.selectionEnd;
+        };
         this.className = className;
         if (true === autoStart) {
             this.run();
@@ -12,22 +17,17 @@ var ThaanaKeyboard = /** @class */ (function () {
         var inputs = document.querySelectorAll(this.className);
         inputs.forEach(function (input) { return input.addEventListener('beforeinput', function (e) { return _this.beforeInputEvent(e); }); });
         inputs.forEach(function (input) { return input.addEventListener('input', function (e) { return _this.inputEvent(e); }); });
-        document.addEventListener('selectionchange', _this.selectionChange )
+        document.addEventListener('selectionchange', this.selectionChange);
     };
     ThaanaKeyboard.prototype.beforeInputEvent = function (event) {
         var e = event;
         var t = e.target;
         if (-1 !== ['insertCompositionText', 'insertText'].indexOf(e.inputType)) {
-            this.latinChar = e.data;
+            this.latinChar = e.data.charAt(e.data.length - 1);
             this.char = this.getChar(this.latinChar);
             this.oldValue = t.value;
         }
         return;
-    };
-    ThaanaKeyboard.prototype.selectionChange = function () {
-        const activeElement = document.activeElement
-        activeElement.dataset.start = activeElement.selectionStart
-        activeElement.dataset.end = activeElement.selectionEnd
     };
     ThaanaKeyboard.prototype.inputEvent = function (event) {
         var e = event;
@@ -44,12 +44,11 @@ var ThaanaKeyboard = /** @class */ (function () {
         // remove the original latin char
         target.value = ''; // reset the value first
         target.value = this.oldValue.split(this.latinChar).join('');
-
         //remove selection 
-        const selectionStart = target.dataset.start
-        const selectionEnd = target.dataset.end
-        if( ( selectionEnd - selectionStart ) > 0 )
-            target.value =  target.value.substring(0, selectionStart) + target.value.substring(selectionEnd)
+        var selectionStart = Number(target.dataset.start);
+        var selectionEnd = Number(target.dataset.end);
+        if ((selectionEnd - selectionStart) > 0)
+            target.value = target.value.substring(0, selectionStart) + target.value.substring(selectionEnd);
         // recreate text with newChar
         var newValue = target.value.substring(0, cursorStart - 1);
         newValue += this.char;

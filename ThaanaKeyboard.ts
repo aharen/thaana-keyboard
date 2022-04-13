@@ -31,7 +31,7 @@ class ThaanaKeyboard {
         const t = e.target as HTMLInputElement
 
         if (-1 !== ['insertCompositionText', 'insertText'].indexOf(e.inputType)) {
-            this.latinChar = e.data
+            this.latinChar = e.data.charAt(e.data.length - 1);
             this.char = this.getChar(this.latinChar)
             this.oldValue = t.value
         }
