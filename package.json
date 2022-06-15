@@ -1,25 +1,25 @@
 {
-  "name": "thaana-keyboard",
-  "version": "2.0.6",
-  "description": "Thaana keyboard replaces latin text to thaana unicode characters",
-  "author": "Ahmed Khusaam <hello@khusaam.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/aharen/thaana-keyboard",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/aharen/thaana-keyboard.git"
-  },
-  "main": "app.js",
-  "keywords": [
-    "thaana",
-    "dhivehi",
-    "keyboard",
-    "latin",
-    "unicode",
-    "characters",
-    "replacement"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+	"name": "thaana-keyboard",
+	"version": "2.0.7",
+	"description": "Thaana keyboard replaces latin text to thaana unicode characters",
+	"author": "Ahmed Khusaam <hello@khusaam.com>",
+	"license": "MIT",
+	"homepage": "https://github.com/aharen/thaana-keyboard",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aharen/thaana-keyboard.git"
+	},
+	"main": "app.js",
+	"keywords": [
+		"thaana",
+		"dhivehi",
+		"keyboard",
+		"latin",
+		"unicode",
+		"characters",
+		"replacement"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
 }
